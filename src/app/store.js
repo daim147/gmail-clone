@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { reducers } from "../features/userReducer";
+import { mailReducers } from "../features/mailReducer";
+import { userReducers } from "../features/userReducer";
 export const store = configureStore({
   reducer: {
-    userAuth: reducers,
+    userAuth: userReducers,
+    mailOpen: mailReducers,
   },
 });

@@ -2,11 +2,14 @@ import React from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import EmailList from "./components/EmailList/EmailList";
 import Mail from "./components/Mail/Mail";
+import SendMail from "./components/SendMail/SendMail";
+import { useSelector } from "react-redux";
 
 function App() {
+  const mailOpen = useSelector((state) => state.mailOpen.mail);
   return (
     <Router>
       <div className="app">
@@ -22,6 +25,7 @@ function App() {
             </Route>
           </Switch>
         </div>
+        {mailOpen && <SendMail />}
       </div>
     </Router>
   );
