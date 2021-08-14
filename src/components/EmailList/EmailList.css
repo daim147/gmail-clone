@@ -12,3 +12,12 @@
   padding-right: 10px;
   z-index: 999;
 }
+.email__sections {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid whitesmoke;
+  z-index: 999;
+}
