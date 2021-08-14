@@ -1,0 +1,63 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid whitesmoke;
+  padding: 5px;
+}
+
+/*=============================================
+=            Header Left comment block            =
+=============================================*/
+
+.header__left {
+  display: flex;
+  align-items: center;
+}
+.header__left > img {
+  object-fit: contain;
+  height: 60px;
+  margin-left: 5px;
+}
+
+/*=====  End of Header Leftcomment block  ======*/
+
+/*=============================================
+=            Header Middle comment block            =
+=============================================*/
+
+.header__middle {
+  display: flex;
+  align-items: center;
+  flex: 0.8;
+  background-color: whitesmoke;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.header__middle > input {
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: medium;
+  flex: 1;
+}
+
+.header__middle > .MuiSvgIcon-root {
+  color: gray;
+}
+
+/*=====  End of Header Middle comment block  ======*/
+
+/*=============================================
+=            Header Right comment block            =
+=============================================*/
+
+.header__right {
+  display: flex;
+  align-items: center;
+  padding-right: 20px;
+}
+
+/*=====  End of Header Right comment block  ======*/
