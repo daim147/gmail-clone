@@ -11,12 +11,27 @@ import {
   Redo,
   Settings,
 } from "@material-ui/icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { dataBase } from "../../Firebase";
 import EmailIcons from "./EmailIcons";
 import "./EmailList.css";
 import EmailRow from "./EmailRow";
 import Sections from "./Sections";
 const EmailList = () => {
+  const [emails, setEmails] = useState(null);
+
+  useEffect(() => {
+    dataBase
+      .collection("emails")
+      .orderBy("timeStamp", "desc")
+      .onSnapshot((emails) => {
+        setEmails(
+          emails.docs.map((email) => ({ id: email.id, ...email.data() }))
+        );
+      });
+  }, []);
+
+  console.log(emails);
   return (
     <div className="emailList">
       <div className="emailList__settings">
@@ -38,20 +53,16 @@ const EmailList = () => {
       </div>
 
       <div className="emailList__lists">
-        <EmailRow
-          title="Hello"
-          id="hee"
-          subject="HELLLO WORLD"
-          description="WORLD IS DUMP  WORLDHELLLO WORLDHELLLO WORLDHELLLO WORLDHELLLO WORLDHELLLO WORLDHELLLO WORLD WORLDHELLLO WORLDHELLLO WORLDHELLLO WORLDHELLLO WORLDHELLLO WORLDHELLLO WORLD"
-          time="10:00pm"
-        />
-        <EmailRow
-          title="Hello"
-          id="hee"
-          subject="HELLLO WORLD"
-          description="WORLD IS DUMP  WORLDHELLLO WORLDHELLLO WORLDHELLLO WORLDHELLLO "
-          time="10:00pm"
-        />
+        {emails?.map((email) => (
+          <EmailRow
+            title={email.to}
+            key={email.id}
+            id={email.id}
+            subject={email.subject}
+            description={email.message}
+            time={email.timeStamp}
+          />
+        ))}
       </div>
     </div>
   );
