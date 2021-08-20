@@ -31,7 +31,6 @@ const EmailList = () => {
       });
   }, []);
 
-  console.log(emails);
   return (
     <div className="emailList">
       <div className="emailList__settings">
