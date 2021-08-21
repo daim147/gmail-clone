@@ -9,6 +9,7 @@ import { dataBase } from "../../Firebase";
 import "./SendMail.css";
 import LoaderSpinner from "../Loader/Loader";
 import { useState } from "react";
+import { motion } from "framer-motion";
 const SendMail = () => {
   const {
     register,
@@ -31,11 +32,18 @@ const SendMail = () => {
     } catch (error) {
       alert(error);
     } finally {
-      setloading(true);
+      // setloading(true);
     }
   };
   return (
-    <div className="sendMail">
+    <motion.div
+      initial={{ opacity: 0, y: 500 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: "spring", bounce: "0.5" }}
+      exit={{ y: 500, opacity: 0 }}
+      layout
+      className="sendMail"
+    >
       {loading ? (
         <>
           <div className="sendMail__header">
@@ -97,7 +105,7 @@ const SendMail = () => {
       ) : (
         <LoaderSpinner />
       )}
-    </div>
+    </motion.div>
   );
 };
 

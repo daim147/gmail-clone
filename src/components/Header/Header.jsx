@@ -1,3 +1,4 @@
+import React from "react";
 import { Avatar, IconButton } from "@material-ui/core";
 import {
   Apps,
@@ -6,14 +7,35 @@ import {
   Notifications,
   Search,
 } from "@material-ui/icons";
-import React from "react";
 import { useSelector } from "react-redux";
 import { auth } from "../../Firebase";
 import "./Header.css";
+import { motion } from "framer-motion";
+
+// ! ANIMATION VARIANT
+const headerAnimation = {
+  initial: {
+    y: -100,
+  },
+  final: {
+    y: 0,
+    transition: {
+      type: "spring",
+      bounce: "0.8",
+    },
+  },
+};
+
 const Header = () => {
   const user = useSelector((state) => state.userAuth.user);
+
   return (
-    <div className="header">
+    <motion.div
+      variants={headerAnimation}
+      initial="initial"
+      animate="final"
+      className="header"
+    >
       <div className="header__left">
         <IconButton>
           <Menu />
@@ -37,7 +59,7 @@ const Header = () => {
         </IconButton>
         <Avatar onClick={() => auth.signOut()} src={user.photoUrl} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -11,6 +11,7 @@ import Login from "./components/Login/Login";
 import { auth } from "./Firebase";
 import { login, logout } from "./features/userReducer";
 import LoaderSpinner from "./components/Loader/Loader";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   const mailOpen = useSelector((state) => state.mailOpen.mail);
@@ -57,7 +58,7 @@ function App() {
               </Route>
             </Switch>
           </div>
-          {mailOpen && <SendMail />}
+          <AnimatePresence>{mailOpen && <SendMail />}</AnimatePresence>
         </div>
       ) : (
         <Login />

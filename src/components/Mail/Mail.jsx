@@ -35,7 +35,6 @@ const Mail = () => {
     asyncFunc();
   }, [mailId]);
 
-  console.log(mailId);
   return (
     <div className="mail">
       {email ? (
