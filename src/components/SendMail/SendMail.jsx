@@ -80,7 +80,7 @@ const SendMail = () => {
             {errors.message && (
               <p className="error_mail">Message is Required</p>
             )}
-            {console.log(errors)}
+
             <div className="sendMail__options">
               <Button
                 variant="contained"

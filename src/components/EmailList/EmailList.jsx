@@ -21,7 +21,7 @@ const EmailList = () => {
   const [emails, setEmails] = useState(null);
 
   useEffect(() => {
-    dataBase
+    const unsubsribe = dataBase
       .collection("emails")
       .orderBy("timeStamp", "desc")
       .onSnapshot((emails) => {
@@ -29,6 +29,8 @@ const EmailList = () => {
           emails.docs.map((email) => ({ id: email.id, ...email.data() }))
         );
       });
+
+    return () => unsubsribe();
   }, []);
 
   return (
@@ -52,14 +54,18 @@ const EmailList = () => {
       </div>
 
       <div className="emailList__lists">
-        {emails?.map((email) => (
+        {emails?.map(({ to, id, subject, message, timeStamp }) => (
           <EmailRow
-            title={email.to}
-            key={email.id}
-            id={email.id}
-            subject={email.subject}
-            description={email.message}
-            time={email.timeStamp}
+            title={to}
+            key={id}
+            id={id}
+            subject={subject}
+            description={message}
+            time={
+              timeStamp
+                ? new Date(timeStamp.seconds * 1000).toLocaleString()
+                : ""
+            }
           />
         ))}
       </div>
@@ -67,4 +73,4 @@ const EmailList = () => {
   );
 };
 
-export default EmailList;
+export default React.memo(EmailList);

@@ -7,10 +7,9 @@ import "./EmailRow.css";
 
 const EmailRow = ({ title, id, subject, description, time }) => {
   const history = useHistory();
-  // const now = new Date().getSeconds();
 
   return (
-    <div onClick={() => history.push("/mail")} className="emailRow">
+    <div onClick={() => history.push(`/mail/${id}`)} className="emailRow">
       <div className="emailRow__options">
         <Checkbox />
         <EmailIcons icons={[StarBorderOutlined, LabelImportantOutlined]} />
@@ -22,9 +21,7 @@ const EmailRow = ({ title, id, subject, description, time }) => {
           <span className="emailRow__description">{description}</span>
         </h4>
       </div>
-      <p className="emailRow__time">
-        {time ? new Date(+`${time.seconds}000`).toLocaleString() : ""}
-      </p>
+      <p className="emailRow__time">{time}</p>
     </div>
   );
 };
