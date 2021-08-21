@@ -20,8 +20,7 @@ const headerAnimation = {
   final: {
     y: 0,
     transition: {
-      type: "spring",
-      bounce: "0.8",
+      type: "tween",
     },
   },
 };

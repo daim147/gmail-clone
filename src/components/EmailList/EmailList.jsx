@@ -20,6 +20,19 @@ import "./EmailList.css";
 import EmailRow from "./EmailRow";
 import Sections from "./Sections";
 
+const emailSection = {
+  initial: {
+    opacity: 0,
+  },
+  final: {
+    opacity: 1,
+    transition: {
+      duration: 1.2,
+      staggerChildren: 0.3,
+    },
+  },
+};
+
 const EmailList = () => {
   const [emails, setEmails] = useState(null);
   // const [loading, setLoading] = useState(null);
@@ -39,7 +52,12 @@ const EmailList = () => {
 
   return (
     <div className="emailList">
-      <div className="emailList__settings">
+      <motion.div
+        variants={emailSection}
+        initial="initial"
+        animate="final"
+        className="emailList__settings"
+      >
         <div className="emailList__settingsLeft">
           <Checkbox />
           <EmailIcons icons={[ArrowDropDown, Redo, MoreVert]} />
@@ -49,13 +67,18 @@ const EmailList = () => {
             icons={[ChevronLeft, ChevronRight, KeyboardHide, Settings]}
           />
         </div>
-      </div>
+      </motion.div>
       {/* Email Sections */}
-      <div className="email__sections">
+      <motion.div
+        variants={emailSection}
+        initial="initial"
+        animate="final"
+        className="email__sections"
+      >
         <Sections Icon={Inbox} title="Primary" color="red" selected />
         <Sections Icon={People} title="Social" color="#1A73e8" />
         <Sections Icon={LocalOffer} title="Promotions" color="green" />
-      </div>
+      </motion.div>
       <AnimateSharedLayout>
         <motion.div layout className="emailList__lists">
           {emails ? (

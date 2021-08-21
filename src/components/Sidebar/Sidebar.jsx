@@ -12,16 +12,33 @@ import {
   Phone,
   Star,
 } from "@material-ui/icons";
+import { motion } from "framer-motion";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { isOpen } from "../../features/mailReducer";
 import "./Sidebar.css";
 import SidebarOptions from "./SidebarOptions";
-
+const sideBar = {
+  initial: {
+    opacity: 0,
+  },
+  final: {
+    opacity: 1,
+    transition: {
+      duration: 1.2,
+      staggerChildren: 0.1,
+    },
+  },
+};
 const Sidebar = () => {
   const dispatch = useDispatch();
   return (
-    <div className="sidebar">
+    <motion.div
+      className="sidebar"
+      variants={sideBar}
+      initial="initial"
+      animate="final"
+    >
       <Button
         onClick={() => dispatch(isOpen())}
         startIcon={<Add fontSize="large" />}
@@ -50,7 +67,7 @@ const Sidebar = () => {
           </IconButton>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
