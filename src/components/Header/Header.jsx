@@ -7,8 +7,11 @@ import {
   Search,
 } from "@material-ui/icons";
 import React from "react";
+import { useSelector } from "react-redux";
+import { auth } from "../../Firebase";
 import "./Header.css";
 const Header = () => {
+  const user = useSelector((state) => state.userAuth.user);
   return (
     <div className="header">
       <div className="header__left">
@@ -32,7 +35,7 @@ const Header = () => {
         <IconButton>
           <Notifications />
         </IconButton>
-        <Avatar />
+        <Avatar onClick={() => auth.signOut()} src={user.photoUrl} />
       </div>
     </div>
   );

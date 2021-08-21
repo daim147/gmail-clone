@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: null,
+    user: "pending",
   },
   reducers: {
     login(state, actions) {
@@ -12,10 +12,13 @@ const userSlice = createSlice({
     logout(state) {
       state.user = null;
     },
+    pending(state) {
+      state.user = "pending";
+    },
   },
 });
 
 const userReducers = userSlice.reducer;
-const { login, logout } = userSlice.actions;
+const { login, logout, pending } = userSlice.actions;
 
-export { userReducers, login, logout };
+export { userReducers, login, logout, pending };
